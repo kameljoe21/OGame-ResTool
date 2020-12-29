@@ -245,6 +245,7 @@ namespace WindowsFormsApp1
             deutCostShortfall.Text = "Deut: " + deutShortfall.ToString("N0");
 
             // Info drop
+            //r
             unitMetal.Text = "Metal: " + baseMetal2.ToString("N0");
             unitCrystal.Text = "Crystal: " + baseCrystal2.ToString("N0");
             unitDeut.Text = "Deut: " + baseDeut2.ToString("N0");
