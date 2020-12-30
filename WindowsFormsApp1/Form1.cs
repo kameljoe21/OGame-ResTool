@@ -312,9 +312,9 @@ namespace WindowsFormsApp1
                             baseDeutTemp += Convert.ToInt64(Math.Floor(baseDeut * Math.Pow(levelCostMultiplier, i - 1)));
                         }
                     }
-                    baseMetal2 = baseMetalTemp * multiplier[a];
-                    baseCrystal2 = baseCrystalTemp * multiplier[a];
-                    baseDeut2 = baseDeutTemp * multiplier[a];
+                    baseMetal2 += baseMetalTemp * multiplier[a];
+                    baseCrystal2 += baseCrystalTemp * multiplier[a];
+                    baseDeut2 += baseDeutTemp * multiplier[a];
 
                 }
 
@@ -606,6 +606,14 @@ namespace WindowsFormsApp1
             multiplierInput.Text = Properties.Settings.Default.multiplier;
             checkBox1.Checked = Properties.Settings.Default.singlerange;
             levelInput2.Text = Properties.Settings.Default.level2;
+            levelInput3.Text = Properties.Settings.Default.level3;
+            levelInput4.Text = Properties.Settings.Default.level4;
+            levelInput5.Text = Properties.Settings.Default.level5;
+            multiplierInput2.Text = Properties.Settings.Default.multiplier2;
+            multiplierInput3.Text = Properties.Settings.Default.multiplier3;
+            multiplierInput4.Text = Properties.Settings.Default.multiplier4;
+            multiplierInput5.Text = Properties.Settings.Default.multiplier5;
+            levelInputTarget.Text = Properties.Settings.Default.levelTarget;
         }
     }
 }
