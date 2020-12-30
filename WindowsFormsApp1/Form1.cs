@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,9 +16,8 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            mineDropdown.SelectedIndex = 0;
-            buildingDropdown.SelectedIndex = 0;
-            researchDropdown.SelectedIndex = 0;
+
+            loadSettings();
         }
 
         int[,] mineValues = { { 60, 15, 0 }, { 48, 24, 0 }, { 225, 75, 0 }, { 75, 30, 0 }, { 900, 360, 180 }, { 1000, 0, 0 }, { 1000, 500, 0 }, { 1000, 1000, 0 } };
@@ -28,10 +28,14 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Int64 metal, crystal, deut, level, level2, multiplier;
+            saveSettings();
+            Int64 metal, crystal, deut, levelTarget, metalk, crystalk, deutk, tempInt;
+            List<Int64> level = new List<long>();
+            List<Int64> multiplier = new List<long>();
             //double metalConv, crystalConv, deutConv;
             double levelCostMultiplier = 2.0;
             String metalOriginal, crystalOriginal, deutOriginal /*,metalConversionOriginal, crystalConversionOriginal, deutConversionOriginal*/;
+            String metalKeep, crystalKeep, deutKeep;
             metalOriginal = currentMetal.Text;
             metalOriginal = metalOriginal.Replace(".", String.Empty);
             metalOriginal = metalOriginal.Replace(",", String.Empty);
@@ -46,6 +50,21 @@ namespace WindowsFormsApp1
             deutOriginal = deutOriginal.Replace(".", String.Empty);
             deutOriginal = deutOriginal.Replace(",", String.Empty);
             deutOriginal = deutOriginal.Replace(" ", String.Empty);
+
+            metalKeep = keepMetal.Text;
+            metalKeep = metalKeep.Replace(".", String.Empty);
+            metalKeep = metalKeep.Replace(",", String.Empty);
+            metalKeep = metalKeep.Replace(" ", String.Empty);
+
+            crystalKeep = keepCrystal.Text;
+            crystalKeep = metalOriginal.Replace(".", String.Empty);
+            crystalKeep = metalOriginal.Replace(",", String.Empty);
+            crystalKeep = metalOriginal.Replace(" ", String.Empty);
+
+            deutKeep = keepDeut.Text;
+            deutKeep = deutKeep.Replace(".", String.Empty);
+            deutKeep = deutKeep.Replace(",", String.Empty);
+            deutKeep = deutKeep.Replace(" ", String.Empty);
 
             //metalConversionOriginal = metalConversion.Text;
             //metalConversionOriginal = metalConversionOriginal.Replace(".", ",");
@@ -83,6 +102,35 @@ namespace WindowsFormsApp1
             {
                 deut = 0;
             }
+            if (Int64.TryParse(metalKeep, out metalk))
+            {
+
+            }
+            else
+            {
+                metalk = 0;
+            }
+            if (Int64.TryParse(crystalKeep, out crystalk))
+            {
+
+            }
+            else
+            {
+                crystalk = 0;
+            }
+            if (Int64.TryParse(deutKeep, out deutk))
+            {
+
+            }
+            else
+            {
+                deutk = 0;
+            }
+            metal -= metalk;
+            crystal -= crystalk;
+            deut -= deutk;
+
+
             //if (double.TryParse(metalConversionOriginal, out metalConv)) {
 
             //} else {
@@ -99,31 +147,95 @@ namespace WindowsFormsApp1
             //    deutConv = 1;
             //}
 
-            if (Int64.TryParse(levelInput.Text, out level))
+            if (Int64.TryParse(levelInputTarget.Text, out levelTarget))
             {
 
             }
             else
             {
-                level = 1;
+                levelTarget = 1;
             }
-            if (Int64.TryParse(levelInput2.Text, out level2))
-            {
 
+            if (Int64.TryParse(levelInput.Text, out tempInt))
+            {
+                level.Add(tempInt);
             }
             else
             {
-                level2 = 1;
+                level.Add(levelTarget);
             }
-            if (Int64.TryParse(multiplierInput.Text, out multiplier))
+            if (Int64.TryParse(levelInput2.Text, out tempInt))
             {
-
+                level.Add(tempInt);
             }
             else
             {
-                multiplier = 1;
+                level.Add(levelTarget);
             }
-
+            if (Int64.TryParse(levelInput3.Text, out tempInt))
+            {
+                level.Add(tempInt);
+            }
+            else
+            {
+                level.Add(levelTarget);
+            }
+            if (Int64.TryParse(levelInput4.Text, out tempInt))
+            {
+                level.Add(tempInt);
+            }
+            else
+            {
+                level.Add(levelTarget);
+            }
+            if (Int64.TryParse(levelInput5.Text, out tempInt))
+            {
+                level.Add(tempInt);
+            }
+            else
+            {
+                level.Add(levelTarget);
+            }
+            if (Int64.TryParse(multiplierInput.Text, out tempInt))
+            {
+                multiplier.Add(tempInt);
+            }
+            else
+            {
+                multiplier.Add(1);
+            }
+            if (Int64.TryParse(multiplierInput2.Text, out tempInt))
+            {
+                multiplier.Add(tempInt);
+            }
+            else
+            {
+                multiplier.Add(1);
+            }
+            if (Int64.TryParse(multiplierInput3.Text, out tempInt))
+            {
+                multiplier.Add(tempInt);
+            }
+            else
+            {
+                multiplier.Add(1);
+            }
+            if (Int64.TryParse(multiplierInput4.Text, out tempInt))
+            {
+                multiplier.Add(tempInt);
+            }
+            else
+            {
+                multiplier.Add(1);
+            }
+            if (Int64.TryParse(multiplierInput5.Text, out tempInt))
+            {
+                multiplier.Add(tempInt);
+            }
+            else
+            {
+                multiplier.Add(1);
+            }
             Int64 selected = -1;
             Int64 metalCost, crystalCost, deutCost, metalShortfall, crystalShortfall, deutShortfall;
             Int64 baseMetal = 0, baseCrystal = 0, baseDeut = 0;
@@ -173,45 +285,64 @@ namespace WindowsFormsApp1
                 baseCrystal = researchValues[selected, 1];
                 baseDeut = researchValues[selected, 2];
             }
+            metalShortfall = 0;
+            crystalShortfall = 0;
+            deutShortfall = 0;
 
-            if (!checkBox1.Checked || level >= level2)
+            if (checkBox1.Checked)
+            {
+                for (int a = 0; a < level.Count; a++)
+                {
+                    Int64 baseMetalTemp = 0;
+                    Int64 baseCrystalTemp = 0;
+                    Int64 baseDeutTemp = 0;
+
+                    for (long i = level[a]; i <= levelTarget; i++)
+                    {
+                        if (radioButton3.Checked && selected == 7)
+                        {
+                            baseMetalTemp += Convert.ToInt64(Math.Round(baseMetal * Math.Pow(levelCostMultiplier, i - 1) / 100d, 0d) * 100d);
+                            baseCrystalTemp += Convert.ToInt64(Math.Round(baseCrystal * Math.Pow(levelCostMultiplier, i - 1) / 100d, 0d) * 100d);
+                            baseDeutTemp += Convert.ToInt64(Math.Round(baseDeut * Math.Pow(levelCostMultiplier, i - 1) / 100d, 0d) * 100d);
+                        }
+                        else
+                        {
+                            baseMetalTemp += Convert.ToInt64(Math.Floor(baseMetal * Math.Pow(levelCostMultiplier, i - 1)));
+                            baseCrystalTemp += Convert.ToInt64(Math.Floor(baseCrystal * Math.Pow(levelCostMultiplier, i - 1)));
+                            baseDeutTemp += Convert.ToInt64(Math.Floor(baseDeut * Math.Pow(levelCostMultiplier, i - 1)));
+                        }
+                    }
+                    baseMetal2 = baseMetalTemp * multiplier[a];
+                    baseCrystal2 = baseCrystalTemp * multiplier[a];
+                    baseDeut2 = baseDeutTemp * multiplier[a];
+
+                }
+
+                metalShortfall = baseMetal2;
+                crystalShortfall = baseCrystal2;
+                deutShortfall = baseDeut2;
+            } else
             {
                 if (radioButton3.Checked && selected == 7)
                 {
-                    baseMetal2 = Convert.ToInt64(Math.Round(baseMetal * Math.Pow(levelCostMultiplier, level - 1) / 100d, 0d) * 100d);
-                    baseCrystal2 = Convert.ToInt64(Math.Round(baseCrystal * Math.Pow(levelCostMultiplier, level - 1) / 100d, 0d) * 100d);
-                    baseDeut = Convert.ToInt64(Math.Round(baseDeut * Math.Pow(levelCostMultiplier, level - 1) / 100d, 0d) * 100d);
+                    baseMetal2 = Convert.ToInt64(Math.Round(baseMetal * Math.Pow(levelCostMultiplier, levelTarget - 1) / 100d, 0d) * 100d);
+                    baseCrystal2 = Convert.ToInt64(Math.Round(baseCrystal * Math.Pow(levelCostMultiplier, levelTarget - 1) / 100d, 0d) * 100d);
+                    baseDeut2 = Convert.ToInt64(Math.Round(baseDeut * Math.Pow(levelCostMultiplier, levelTarget - 1) / 100d, 0d) * 100d);
                 }
                 else
                 {
-                    baseMetal2 = Convert.ToInt64(Math.Floor(baseMetal * Math.Pow(levelCostMultiplier, level - 1)));
-                    baseCrystal2 = Convert.ToInt64(Math.Floor(baseCrystal * Math.Pow(levelCostMultiplier, level - 1)));
-                    baseDeut2 = Convert.ToInt64(Math.Floor(baseDeut * Math.Pow(levelCostMultiplier, level - 1)));
+                    baseMetal2 = Convert.ToInt64(Math.Floor(baseMetal * Math.Pow(levelCostMultiplier, levelTarget - 1)));
+                    baseCrystal2 = Convert.ToInt64(Math.Floor(baseCrystal * Math.Pow(levelCostMultiplier, levelTarget - 1)));
+                    baseDeut2 = Convert.ToInt64(Math.Floor(baseDeut * Math.Pow(levelCostMultiplier, levelTarget - 1)));
                 }
-            }
-            else
-            {
-                for (long i = level; i <= level2; i++)
-                {
-                    if (radioButton3.Checked && selected == 7)
-                    {
-                        baseMetal2 += Convert.ToInt64(Math.Round(baseMetal * Math.Pow(levelCostMultiplier, i - 1) / 100d, 0d) * 100d);
-                        baseCrystal2 += Convert.ToInt64(Math.Round(baseCrystal * Math.Pow(levelCostMultiplier, i - 1) / 100d, 0d) * 100d);
-                        baseDeut2 += Convert.ToInt64(Math.Round(baseDeut * Math.Pow(levelCostMultiplier, level - 1) / 100d, 0d) * 100d);
-                    }
-                    else
-                    {
-                        baseMetal2 += Convert.ToInt64(Math.Floor(baseMetal * Math.Pow(levelCostMultiplier, i - 1)));
-                        baseCrystal2 += Convert.ToInt64(Math.Floor(baseCrystal * Math.Pow(levelCostMultiplier, i - 1)));
-                        baseDeut2 += Convert.ToInt64(Math.Floor(baseDeut * Math.Pow(levelCostMultiplier, i - 1)));
-                    }
-                }
+
+                metalShortfall = baseMetal2 * multiplier[0];
+                crystalShortfall = baseCrystal2 * multiplier[0];
+                deutShortfall = baseDeut2 * multiplier[0];
             }
 
 
-            metalShortfall = baseMetal2 * multiplier;
-            crystalShortfall = baseCrystal2 * multiplier;
-            deutShortfall = baseDeut2 * multiplier;
+
 
             metalShortfall -= metal;
             crystalShortfall -= crystal;
@@ -219,8 +350,8 @@ namespace WindowsFormsApp1
 
             if (radioButton4.Checked)
             {
-                crystalCost = Convert.ToInt64(Math.Ceiling(crystalShortfall / (numCrystalConversion.Value / numMetalConversion.Value)));
-                deutCost = Convert.ToInt64(Math.Ceiling(deutShortfall / (numDeuteriumConversion.Value / numMetalConversion.Value)));
+                crystalCost = Math.Max(Convert.ToInt64(Math.Ceiling(crystalShortfall / (numCrystalConversion.Value / numMetalConversion.Value))), 0);
+                deutCost = Math.Max(Convert.ToInt64(Math.Ceiling(deutShortfall / (numDeuteriumConversion.Value / numMetalConversion.Value))), 0);
 
                 metalCostResult.Text = "Crystal: " + crystalCost.ToString("N0");
                 crystalCostResult.Text = "Deut: " + deutCost.ToString("N0");
@@ -229,8 +360,8 @@ namespace WindowsFormsApp1
             }
             else if (radioButton5.Checked)
             {
-                metalCost = Convert.ToInt64(Math.Ceiling(metalShortfall / (numMetalConversion.Value / numCrystalConversion.Value)));
-                deutCost = Convert.ToInt64(Math.Ceiling(deutShortfall / (numDeuteriumConversion.Value / numCrystalConversion.Value)));
+                metalCost = Math.Max(Convert.ToInt64(Math.Ceiling(metalShortfall / (numMetalConversion.Value / numCrystalConversion.Value))), 0);
+                deutCost = Math.Max(Convert.ToInt64(Math.Ceiling(deutShortfall / (numDeuteriumConversion.Value / numCrystalConversion.Value))), 0);
 
                 metalCostResult.Text = "Metal: " + metalCost.ToString("N0");
                 crystalCostResult.Text = "Deut: " + deutCost.ToString("N0");
@@ -238,18 +369,46 @@ namespace WindowsFormsApp1
             }
             else if (radioButton6.Checked)
             {
-                metalCost = Convert.ToInt64(Math.Ceiling(metalShortfall / (numMetalConversion.Value / numDeuteriumConversion.Value)));
-                crystalCost = Convert.ToInt64(Math.Ceiling(crystalShortfall / (numCrystalConversion.Value / numDeuteriumConversion.Value)));
+                metalCost = Math.Max(Convert.ToInt64(Math.Ceiling(metalShortfall / (numMetalConversion.Value / numDeuteriumConversion.Value))), 0);
+                crystalCost = Math.Max(Convert.ToInt64(Math.Ceiling(crystalShortfall / (numCrystalConversion.Value / numDeuteriumConversion.Value))), 0);
 
                 metalCostResult.Text = "Metal: " + metalCost.ToString("N0");
                 crystalCostResult.Text = "Crystal: " + crystalCost.ToString("N0");
                 deutCostResult.Text = "Full: " + (metalCost + crystalCost).ToString("N0");
             }
 
+            if (metalShortfall > 0)
+            {
+                metalCostShortfall.Text = "Metal: " + metalShortfall.ToString("N0");
+                metalCostShortfall.ForeColor = Color.Red;
+            } else
+            {
+                metalCostShortfall.ForeColor = Color.Green;
+                metalCostShortfall.Text = "Metal: " + Math.Abs(metalShortfall).ToString("N0");
+            }
 
-            metalCostShortfall.Text = "Metal: " + metalShortfall.ToString("N0");
-            crystalCostShortfall.Text = "Crystal: " + crystalShortfall.ToString("N0");
-            deutCostShortfall.Text = "Deut: " + deutShortfall.ToString("N0");
+            if (crystalShortfall > 0)
+            {
+                crystalCostShortfall.ForeColor = Color.Red;
+                crystalCostShortfall.Text = "Crystal: " + crystalShortfall.ToString("N0");
+            } else
+            {
+                crystalCostShortfall.ForeColor = Color.Green;
+                crystalCostShortfall.Text = "Crystal: " + Math.Abs(crystalShortfall).ToString("N0");
+            }
+            
+
+            if (deutShortfall > 0)
+            {
+                deutCostShortfall.ForeColor = Color.Red;
+                deutCostShortfall.Text = "Deut: " + deutShortfall.ToString("N0");
+            }
+            else
+            {
+                deutCostShortfall.ForeColor = Color.Green;
+                deutCostShortfall.Text = "Deut: " + Math.Abs(deutShortfall).ToString("N0");
+            }
+            
 
 
             // Info drop
@@ -257,9 +416,20 @@ namespace WindowsFormsApp1
             unitCrystal.Text = "Crystal: " + baseCrystal2.ToString("N0");
             unitDeut.Text = "Deut: " + baseDeut2.ToString("N0");
 
-            totalMetal.Text = "Metal: " + (baseMetal2 * multiplier).ToString("N0");
-            totalCrystal.Text = "Crystal:" + (baseCrystal2 * multiplier).ToString("N0");
-            totalDeut.Text = "Deut: " + (baseDeut2 * multiplier).ToString("N0");
+
+            if (checkBox1.Checked)
+            {
+                totalMetal.Text = "Metal: " + (baseMetal2).ToString("N0");
+                totalCrystal.Text = "Crystal: " + (baseCrystal2).ToString("N0");
+                totalDeut.Text = "Deut: " + (baseDeut2).ToString("N0");
+            } else
+            {
+                totalMetal.Text = "Metal: " + (baseMetal2 * multiplier[0]).ToString("N0");
+                totalCrystal.Text = "Crystal: " + (baseCrystal2 * multiplier[0]).ToString("N0");
+                totalDeut.Text = "Deut: " + (baseDeut2 * multiplier[0]).ToString("N0");
+            }
+
+
 
 
         }
@@ -295,12 +465,147 @@ namespace WindowsFormsApp1
         {
             if (checkBox1.Checked)
             {
+                levelInput.Enabled = true;
                 levelInput2.Enabled = true;
+                levelInput3.Enabled = true;
+                levelInput4.Enabled = true;
+                levelInput5.Enabled = true;
+                multiplierInput2.Enabled = true;
+                multiplierInput3.Enabled = true;
+                multiplierInput4.Enabled = true;
+                multiplierInput5.Enabled = true;
             }
             else
             {
+                levelInput.Enabled = false;
                 levelInput2.Enabled = false;
+                levelInput3.Enabled = false;
+                levelInput4.Enabled = false;
+                levelInput5.Enabled = false;
+                multiplierInput2.Enabled = false;
+                multiplierInput3.Enabled = false;
+                multiplierInput4.Enabled = false;
+                multiplierInput5.Enabled = false;
             }
+        }
+
+        private void saveSettings()
+        {
+            Properties.Settings.Default.currentMetal = currentMetal.Text;
+            Properties.Settings.Default.currentCrystal = currentCrystal.Text;
+            Properties.Settings.Default.currentDeut = currentDeut.Text;
+            Properties.Settings.Default.keepMetal = keepMetal.Text;
+            Properties.Settings.Default.keepCrystal = keepCrystal.Text;
+            Properties.Settings.Default.keepDeut = keepDeut.Text;
+            Properties.Settings.Default.convertMetal = numMetalConversion.Text;
+            Properties.Settings.Default.convertCrystal = numCrystalConversion.Text;
+            Properties.Settings.Default.convertDeut = numDeuteriumConversion.Text;
+
+            if (radioButton4.Checked)
+            {
+                Properties.Settings.Default.convertCheck = "Metal";
+            }
+            if (radioButton5.Checked)
+            {
+                Properties.Settings.Default.convertCheck = "Crystal";
+            }
+            if (radioButton6.Checked)
+            {
+                Properties.Settings.Default.convertCheck = "Deut";
+            }
+
+            
+            if (radioButton1.Checked)
+            {
+                Properties.Settings.Default.whatBuildCheck = "Mine";
+            }
+
+            if (radioButton2.Checked)
+            {
+                Properties.Settings.Default.whatBuildCheck = "Building";
+            }
+
+            if (radioButton3.Checked)
+            {
+                Properties.Settings.Default.whatBuildCheck = "Research";
+            }
+
+            Properties.Settings.Default.mineSelect = mineDropdown.SelectedIndex;
+            Properties.Settings.Default.buildingSelect = buildingDropdown.SelectedIndex;
+            Properties.Settings.Default.researchSelect = researchDropdown.SelectedIndex;
+            Properties.Settings.Default.level = levelInput.Text;
+            Properties.Settings.Default.multiplier = multiplierInput.Text;
+            Properties.Settings.Default.singlerange = checkBox1.Checked;
+            Properties.Settings.Default.level2 = levelInput2.Text;
+            Properties.Settings.Default.level3 = levelInput3.Text;
+            Properties.Settings.Default.level4 = levelInput4.Text;
+            Properties.Settings.Default.level5 = levelInput5.Text;
+            Properties.Settings.Default.multiplier2 = multiplierInput2.Text;
+            Properties.Settings.Default.multiplier3 = multiplierInput3.Text;
+            Properties.Settings.Default.multiplier4 = multiplierInput4.Text;
+            Properties.Settings.Default.multiplier5 = multiplierInput5.Text;
+            Properties.Settings.Default.levelTarget = levelInputTarget.Text;
+
+            Properties.Settings.Default.Save();
+        }
+
+        private void loadSettings()
+        {
+            currentMetal.Text = Properties.Settings.Default.currentMetal;
+            currentCrystal.Text = Properties.Settings.Default.currentCrystal;
+            currentDeut.Text = Properties.Settings.Default.currentDeut;
+            keepMetal.Text = Properties.Settings.Default.keepMetal;
+            keepCrystal.Text = Properties.Settings.Default.keepCrystal;
+            keepDeut.Text = Properties.Settings.Default.keepDeut;
+            numMetalConversion.Text = Properties.Settings.Default.convertMetal;
+            numCrystalConversion.Text = Properties.Settings.Default.convertCrystal;
+            numDeuteriumConversion.Text = Properties.Settings.Default.convertDeut;
+
+            if (Properties.Settings.Default.convertCheck == "Metal")
+            {
+                radioButton4.Checked = true;
+                radioButton5.Checked = false;
+                radioButton6.Checked = false;
+            }
+            if (Properties.Settings.Default.convertCheck == "Crystal")
+            {
+                radioButton4.Checked = false;
+                radioButton5.Checked = true;
+                radioButton6.Checked = false;
+            }
+            if (Properties.Settings.Default.convertCheck == "Deut")
+            {
+                radioButton4.Checked = false;
+                radioButton5.Checked = false;
+                radioButton6.Checked = true;
+            }
+
+            if (Properties.Settings.Default.whatBuildCheck == "Mine")
+            {
+                radioButton1.Checked = true;
+                radioButton2.Checked = false;
+                radioButton3.Checked = false;
+            }
+            if (Properties.Settings.Default.whatBuildCheck == "Building")
+            {
+                radioButton1.Checked = false;
+                radioButton2.Checked = true;
+                radioButton3.Checked = false;
+            }
+            if (Properties.Settings.Default.whatBuildCheck == "Research")
+            {
+                radioButton1.Checked = false;
+                radioButton2.Checked = false;
+                radioButton3.Checked = true;
+            }
+
+            mineDropdown.SelectedIndex = Properties.Settings.Default.mineSelect;
+            buildingDropdown.SelectedIndex = Properties.Settings.Default.buildingSelect;
+            researchDropdown.SelectedIndex = Properties.Settings.Default.researchSelect;
+            levelInput.Text = Properties.Settings.Default.level;
+            multiplierInput.Text = Properties.Settings.Default.multiplier;
+            checkBox1.Checked = Properties.Settings.Default.singlerange;
+            levelInput2.Text = Properties.Settings.Default.level2;
         }
     }
 }

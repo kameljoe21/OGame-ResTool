@@ -74,6 +74,22 @@
             this.numMetalConversion = new System.Windows.Forms.NumericUpDown();
             this.numCrystalConversion = new System.Windows.Forms.NumericUpDown();
             this.numDeuteriumConversion = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
+            this.keepDeut = new System.Windows.Forms.TextBox();
+            this.keepCrystal = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.keepMetal = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.levelInput3 = new System.Windows.Forms.TextBox();
+            this.levelInput5 = new System.Windows.Forms.TextBox();
+            this.levelInput4 = new System.Windows.Forms.TextBox();
+            this.levelInputTarget = new System.Windows.Forms.TextBox();
+            this.multiplierInput2 = new System.Windows.Forms.TextBox();
+            this.multiplierInput3 = new System.Windows.Forms.TextBox();
+            this.multiplierInput4 = new System.Windows.Forms.TextBox();
+            this.multiplierInput5 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMetalConversion)).BeginInit();
@@ -200,6 +216,15 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.multiplierInput5);
+            this.groupBox1.Controls.Add(this.multiplierInput4);
+            this.groupBox1.Controls.Add(this.multiplierInput3);
+            this.groupBox1.Controls.Add(this.multiplierInput2);
+            this.groupBox1.Controls.Add(this.levelInputTarget);
+            this.groupBox1.Controls.Add(this.levelInput4);
+            this.groupBox1.Controls.Add(this.levelInput5);
+            this.groupBox1.Controls.Add(this.levelInput3);
             this.groupBox1.Controls.Add(this.levelInput2);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label10);
@@ -215,7 +240,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(17, 207);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(771, 149);
+            this.groupBox1.Size = new System.Drawing.Size(1016, 149);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "What to build";
@@ -223,9 +248,9 @@
             // levelInput2
             // 
             this.levelInput2.Enabled = false;
-            this.levelInput2.Location = new System.Drawing.Point(647, 21);
+            this.levelInput2.Location = new System.Drawing.Point(600, 21);
             this.levelInput2.Name = "levelInput2";
-            this.levelInput2.Size = new System.Drawing.Size(110, 31);
+            this.levelInput2.Size = new System.Drawing.Size(65, 31);
             this.levelInput2.TabIndex = 18;
             // 
             // checkBox1
@@ -250,9 +275,9 @@
             // 
             // multiplierInput
             // 
-            this.multiplierInput.Location = new System.Drawing.Point(531, 58);
+            this.multiplierInput.Location = new System.Drawing.Point(529, 58);
             this.multiplierInput.Name = "multiplierInput";
-            this.multiplierInput.Size = new System.Drawing.Size(110, 31);
+            this.multiplierInput.Size = new System.Drawing.Size(65, 31);
             this.multiplierInput.TabIndex = 13;
             // 
             // label5
@@ -266,9 +291,10 @@
             // 
             // levelInput
             // 
-            this.levelInput.Location = new System.Drawing.Point(531, 21);
+            this.levelInput.Enabled = false;
+            this.levelInput.Location = new System.Drawing.Point(529, 21);
             this.levelInput.Name = "levelInput";
-            this.levelInput.Size = new System.Drawing.Size(110, 31);
+            this.levelInput.Size = new System.Drawing.Size(65, 31);
             this.levelInput.TabIndex = 12;
             // 
             // mineDropdown
@@ -351,9 +377,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(12, 496);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(91, 25);
+            this.label9.Size = new System.Drawing.Size(187, 25);
             this.label9.TabIndex = 17;
-            this.label9.Text = "Shortfall";
+            this.label9.Text = "Shortfall / Leftover";
             // 
             // metalCostResult
             // 
@@ -377,6 +403,7 @@
             // 
             this.metalCostShortfall.AutoSize = true;
             this.metalCostShortfall.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalCostShortfall.ForeColor = System.Drawing.SystemColors.ControlText;
             this.metalCostShortfall.Location = new System.Drawing.Point(12, 521);
             this.metalCostShortfall.Name = "metalCostShortfall";
             this.metalCostShortfall.Size = new System.Drawing.Size(65, 25);
@@ -609,6 +636,142 @@
             0,
             0});
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(674, 9);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(149, 25);
+            this.label8.TabIndex = 50;
+            this.label8.Text = "Keep on Hand";
+            // 
+            // keepDeut
+            // 
+            this.keepDeut.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.keepDeut.Location = new System.Drawing.Point(679, 106);
+            this.keepDeut.Name = "keepDeut";
+            this.keepDeut.Size = new System.Drawing.Size(187, 31);
+            this.keepDeut.TabIndex = 48;
+            // 
+            // keepCrystal
+            // 
+            this.keepCrystal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.keepCrystal.Location = new System.Drawing.Point(679, 69);
+            this.keepCrystal.Name = "keepCrystal";
+            this.keepCrystal.Size = new System.Drawing.Size(187, 31);
+            this.keepCrystal.TabIndex = 46;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(596, 109);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(57, 25);
+            this.label12.TabIndex = 49;
+            this.label12.Text = "Deut";
+            // 
+            // keepMetal
+            // 
+            this.keepMetal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.keepMetal.Location = new System.Drawing.Point(679, 32);
+            this.keepMetal.Name = "keepMetal";
+            this.keepMetal.Size = new System.Drawing.Size(187, 31);
+            this.keepMetal.TabIndex = 44;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(596, 72);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(79, 25);
+            this.label13.TabIndex = 47;
+            this.label13.Text = "Crystal";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(596, 35);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(65, 25);
+            this.label14.TabIndex = 45;
+            this.label14.Text = "Metal";
+            // 
+            // levelInput3
+            // 
+            this.levelInput3.Enabled = false;
+            this.levelInput3.Location = new System.Drawing.Point(671, 21);
+            this.levelInput3.Name = "levelInput3";
+            this.levelInput3.Size = new System.Drawing.Size(65, 31);
+            this.levelInput3.TabIndex = 19;
+            // 
+            // levelInput5
+            // 
+            this.levelInput5.Enabled = false;
+            this.levelInput5.Location = new System.Drawing.Point(813, 21);
+            this.levelInput5.Name = "levelInput5";
+            this.levelInput5.Size = new System.Drawing.Size(65, 31);
+            this.levelInput5.TabIndex = 20;
+            // 
+            // levelInput4
+            // 
+            this.levelInput4.Enabled = false;
+            this.levelInput4.Location = new System.Drawing.Point(742, 21);
+            this.levelInput4.Name = "levelInput4";
+            this.levelInput4.Size = new System.Drawing.Size(65, 31);
+            this.levelInput4.TabIndex = 21;
+            // 
+            // levelInputTarget
+            // 
+            this.levelInputTarget.Location = new System.Drawing.Point(682, 101);
+            this.levelInputTarget.Name = "levelInputTarget";
+            this.levelInputTarget.Size = new System.Drawing.Size(65, 31);
+            this.levelInputTarget.TabIndex = 22;
+            // 
+            // multiplierInput2
+            // 
+            this.multiplierInput2.Enabled = false;
+            this.multiplierInput2.Location = new System.Drawing.Point(600, 58);
+            this.multiplierInput2.Name = "multiplierInput2";
+            this.multiplierInput2.Size = new System.Drawing.Size(65, 31);
+            this.multiplierInput2.TabIndex = 23;
+            // 
+            // multiplierInput3
+            // 
+            this.multiplierInput3.Enabled = false;
+            this.multiplierInput3.Location = new System.Drawing.Point(671, 58);
+            this.multiplierInput3.Name = "multiplierInput3";
+            this.multiplierInput3.Size = new System.Drawing.Size(65, 31);
+            this.multiplierInput3.TabIndex = 24;
+            // 
+            // multiplierInput4
+            // 
+            this.multiplierInput4.Enabled = false;
+            this.multiplierInput4.Location = new System.Drawing.Point(742, 58);
+            this.multiplierInput4.Name = "multiplierInput4";
+            this.multiplierInput4.Size = new System.Drawing.Size(65, 31);
+            this.multiplierInput4.TabIndex = 25;
+            // 
+            // multiplierInput5
+            // 
+            this.multiplierInput5.Enabled = false;
+            this.multiplierInput5.Location = new System.Drawing.Point(813, 58);
+            this.multiplierInput5.Name = "multiplierInput5";
+            this.multiplierInput5.Size = new System.Drawing.Size(65, 31);
+            this.multiplierInput5.TabIndex = 26;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(602, 102);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(74, 25);
+            this.label15.TabIndex = 27;
+            this.label15.Text = "Target";
+            // 
             // Form1
             // 
             this.AcceptButton = this.button1;
@@ -617,6 +780,13 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1045, 680);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.keepDeut);
+            this.Controls.Add(this.keepCrystal);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.keepMetal);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.numDeuteriumConversion);
             this.Controls.Add(this.numCrystalConversion);
             this.Controls.Add(this.numMetalConversion);
@@ -710,6 +880,22 @@
         private System.Windows.Forms.NumericUpDown numMetalConversion;
         private System.Windows.Forms.NumericUpDown numCrystalConversion;
         private System.Windows.Forms.NumericUpDown numDeuteriumConversion;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox keepDeut;
+        private System.Windows.Forms.TextBox keepCrystal;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox keepMetal;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox multiplierInput5;
+        private System.Windows.Forms.TextBox multiplierInput4;
+        private System.Windows.Forms.TextBox multiplierInput3;
+        private System.Windows.Forms.TextBox multiplierInput2;
+        private System.Windows.Forms.TextBox levelInputTarget;
+        private System.Windows.Forms.TextBox levelInput4;
+        private System.Windows.Forms.TextBox levelInput5;
+        private System.Windows.Forms.TextBox levelInput3;
     }
 }
 
