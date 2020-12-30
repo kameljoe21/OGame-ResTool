@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,6 +41,15 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.buildingDropdown = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.multiplierInput5 = new System.Windows.Forms.TextBox();
+            this.multiplierInput4 = new System.Windows.Forms.TextBox();
+            this.multiplierInput3 = new System.Windows.Forms.TextBox();
+            this.multiplierInput2 = new System.Windows.Forms.TextBox();
+            this.levelInputTarget = new System.Windows.Forms.TextBox();
+            this.levelInput4 = new System.Windows.Forms.TextBox();
+            this.levelInput5 = new System.Windows.Forms.TextBox();
+            this.levelInput3 = new System.Windows.Forms.TextBox();
             this.levelInput2 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -81,15 +91,6 @@
             this.keepMetal = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.levelInput3 = new System.Windows.Forms.TextBox();
-            this.levelInput5 = new System.Windows.Forms.TextBox();
-            this.levelInput4 = new System.Windows.Forms.TextBox();
-            this.levelInputTarget = new System.Windows.Forms.TextBox();
-            this.multiplierInput2 = new System.Windows.Forms.TextBox();
-            this.multiplierInput3 = new System.Windows.Forms.TextBox();
-            this.multiplierInput4 = new System.Windows.Forms.TextBox();
-            this.multiplierInput5 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMetalConversion)).BeginInit();
@@ -100,12 +101,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Blue;
             this.label1.Location = new System.Drawing.Point(12, 646);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(805, 25);
+            this.label1.Size = new System.Drawing.Size(296, 27);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Based on Hykage\'s Res Calc for Deut Conversion, in collaboration with kameljoe21";
+            this.label1.Text = " Hykage Horcon kameljoe21  ";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -165,7 +171,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 22);
+            this.radioButton1.Location = new System.Drawing.Point(0, 35);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(77, 29);
             this.radioButton1.TabIndex = 6;
@@ -176,7 +182,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 59);
+            this.radioButton2.Location = new System.Drawing.Point(0, 75);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(107, 29);
             this.radioButton2.TabIndex = 7;
@@ -186,7 +192,7 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 100);
+            this.radioButton3.Location = new System.Drawing.Point(0, 113);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(122, 29);
             this.radioButton3.TabIndex = 8;
@@ -208,7 +214,7 @@
             "Lunar Base",
             "Sensor Phalanx",
             "Jump Gate"});
-            this.buildingDropdown.Location = new System.Drawing.Point(128, 60);
+            this.buildingDropdown.Location = new System.Drawing.Point(128, 70);
             this.buildingDropdown.MaxDropDownItems = 25;
             this.buildingDropdown.Name = "buildingDropdown";
             this.buildingDropdown.Size = new System.Drawing.Size(292, 33);
@@ -238,12 +244,85 @@
             this.groupBox1.Controls.Add(this.researchDropdown);
             this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(17, 207);
+            this.groupBox1.Location = new System.Drawing.Point(12, 159);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1016, 149);
+            this.groupBox1.Size = new System.Drawing.Size(910, 160);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "What to build";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(602, 102);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(74, 25);
+            this.label15.TabIndex = 27;
+            this.label15.Text = "Target";
+            // 
+            // multiplierInput5
+            // 
+            this.multiplierInput5.Enabled = false;
+            this.multiplierInput5.Location = new System.Drawing.Point(813, 58);
+            this.multiplierInput5.Name = "multiplierInput5";
+            this.multiplierInput5.Size = new System.Drawing.Size(65, 31);
+            this.multiplierInput5.TabIndex = 26;
+            // 
+            // multiplierInput4
+            // 
+            this.multiplierInput4.Enabled = false;
+            this.multiplierInput4.Location = new System.Drawing.Point(742, 58);
+            this.multiplierInput4.Name = "multiplierInput4";
+            this.multiplierInput4.Size = new System.Drawing.Size(65, 31);
+            this.multiplierInput4.TabIndex = 25;
+            // 
+            // multiplierInput3
+            // 
+            this.multiplierInput3.Enabled = false;
+            this.multiplierInput3.Location = new System.Drawing.Point(671, 58);
+            this.multiplierInput3.Name = "multiplierInput3";
+            this.multiplierInput3.Size = new System.Drawing.Size(65, 31);
+            this.multiplierInput3.TabIndex = 24;
+            // 
+            // multiplierInput2
+            // 
+            this.multiplierInput2.Enabled = false;
+            this.multiplierInput2.Location = new System.Drawing.Point(600, 58);
+            this.multiplierInput2.Name = "multiplierInput2";
+            this.multiplierInput2.Size = new System.Drawing.Size(65, 31);
+            this.multiplierInput2.TabIndex = 23;
+            // 
+            // levelInputTarget
+            // 
+            this.levelInputTarget.Location = new System.Drawing.Point(682, 101);
+            this.levelInputTarget.Name = "levelInputTarget";
+            this.levelInputTarget.Size = new System.Drawing.Size(65, 31);
+            this.levelInputTarget.TabIndex = 22;
+            // 
+            // levelInput4
+            // 
+            this.levelInput4.Enabled = false;
+            this.levelInput4.Location = new System.Drawing.Point(742, 21);
+            this.levelInput4.Name = "levelInput4";
+            this.levelInput4.Size = new System.Drawing.Size(65, 31);
+            this.levelInput4.TabIndex = 21;
+            // 
+            // levelInput5
+            // 
+            this.levelInput5.Enabled = false;
+            this.levelInput5.Location = new System.Drawing.Point(813, 21);
+            this.levelInput5.Name = "levelInput5";
+            this.levelInput5.Size = new System.Drawing.Size(65, 31);
+            this.levelInput5.TabIndex = 20;
+            // 
+            // levelInput3
+            // 
+            this.levelInput3.Enabled = false;
+            this.levelInput3.Location = new System.Drawing.Point(671, 21);
+            this.levelInput3.Name = "levelInput3";
+            this.levelInput3.Size = new System.Drawing.Size(65, 31);
+            this.levelInput3.TabIndex = 19;
             // 
             // levelInput2
             // 
@@ -309,7 +388,7 @@
             "Metal Storage",
             "Crystal Storage",
             "Deuterium Tank"});
-            this.mineDropdown.Location = new System.Drawing.Point(128, 21);
+            this.mineDropdown.Location = new System.Drawing.Point(128, 31);
             this.mineDropdown.MaxDropDownItems = 25;
             this.mineDropdown.Name = "mineDropdown";
             this.mineDropdown.Size = new System.Drawing.Size(292, 33);
@@ -335,7 +414,7 @@
             "Weapons Technology",
             "Shielding Technology",
             "Armor Technology"});
-            this.researchDropdown.Location = new System.Drawing.Point(128, 99);
+            this.researchDropdown.Location = new System.Drawing.Point(128, 109);
             this.researchDropdown.MaxDropDownItems = 25;
             this.researchDropdown.Name = "researchDropdown";
             this.researchDropdown.Size = new System.Drawing.Size(292, 33);
@@ -422,6 +501,9 @@
             // 
             // button1
             // 
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button1.FlatAppearance.BorderSize = 2;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(856, 639);
             this.button1.Name = "button1";
@@ -445,7 +527,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(12, 359);
+            this.label11.Location = new System.Drawing.Point(12, 346);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(96, 25);
             this.label11.TabIndex = 24;
@@ -515,7 +597,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(443, 359);
+            this.label21.Location = new System.Drawing.Point(444, 346);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(106, 25);
             this.label21.TabIndex = 31;
@@ -700,78 +782,6 @@
             this.label14.TabIndex = 45;
             this.label14.Text = "Metal";
             // 
-            // levelInput3
-            // 
-            this.levelInput3.Enabled = false;
-            this.levelInput3.Location = new System.Drawing.Point(671, 21);
-            this.levelInput3.Name = "levelInput3";
-            this.levelInput3.Size = new System.Drawing.Size(65, 31);
-            this.levelInput3.TabIndex = 19;
-            // 
-            // levelInput5
-            // 
-            this.levelInput5.Enabled = false;
-            this.levelInput5.Location = new System.Drawing.Point(813, 21);
-            this.levelInput5.Name = "levelInput5";
-            this.levelInput5.Size = new System.Drawing.Size(65, 31);
-            this.levelInput5.TabIndex = 20;
-            // 
-            // levelInput4
-            // 
-            this.levelInput4.Enabled = false;
-            this.levelInput4.Location = new System.Drawing.Point(742, 21);
-            this.levelInput4.Name = "levelInput4";
-            this.levelInput4.Size = new System.Drawing.Size(65, 31);
-            this.levelInput4.TabIndex = 21;
-            // 
-            // levelInputTarget
-            // 
-            this.levelInputTarget.Location = new System.Drawing.Point(682, 101);
-            this.levelInputTarget.Name = "levelInputTarget";
-            this.levelInputTarget.Size = new System.Drawing.Size(65, 31);
-            this.levelInputTarget.TabIndex = 22;
-            // 
-            // multiplierInput2
-            // 
-            this.multiplierInput2.Enabled = false;
-            this.multiplierInput2.Location = new System.Drawing.Point(600, 58);
-            this.multiplierInput2.Name = "multiplierInput2";
-            this.multiplierInput2.Size = new System.Drawing.Size(65, 31);
-            this.multiplierInput2.TabIndex = 23;
-            // 
-            // multiplierInput3
-            // 
-            this.multiplierInput3.Enabled = false;
-            this.multiplierInput3.Location = new System.Drawing.Point(671, 58);
-            this.multiplierInput3.Name = "multiplierInput3";
-            this.multiplierInput3.Size = new System.Drawing.Size(65, 31);
-            this.multiplierInput3.TabIndex = 24;
-            // 
-            // multiplierInput4
-            // 
-            this.multiplierInput4.Enabled = false;
-            this.multiplierInput4.Location = new System.Drawing.Point(742, 58);
-            this.multiplierInput4.Name = "multiplierInput4";
-            this.multiplierInput4.Size = new System.Drawing.Size(65, 31);
-            this.multiplierInput4.TabIndex = 25;
-            // 
-            // multiplierInput5
-            // 
-            this.multiplierInput5.Enabled = false;
-            this.multiplierInput5.Location = new System.Drawing.Point(813, 58);
-            this.multiplierInput5.Name = "multiplierInput5";
-            this.multiplierInput5.Size = new System.Drawing.Size(65, 31);
-            this.multiplierInput5.TabIndex = 26;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(602, 102);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(74, 25);
-            this.label15.TabIndex = 27;
-            this.label15.Text = "Target";
-            // 
             // Form1
             // 
             this.AcceptButton = this.button1;
@@ -818,8 +828,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Horcon\'s Res Calc";
+            this.Text = "Ogame Resource Calculator";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
